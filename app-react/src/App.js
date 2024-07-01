@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
+import confetti from 'canvas-confetti';
 
 
 const TURNS = {	//turnos
@@ -71,6 +72,7 @@ function App() {
     if (newWinner) {
       //alert(`El ganador es ${newWinner}`);
       setWinner(newWinner);
+      confetti();
       return;
     }
     //Verificar si hay empate
@@ -99,11 +101,11 @@ function App() {
         <main className='board'>
           <section className='game'>
             {
-              board.map((_, index) => {
+              board.map((square, index) => {
                 return (
                   // Se le pasa la función updateBoard a Square para que seap qué tiene que hacer
                   <Square key={index} index={index} updateBoard={updateBoard}>
-                    {board[index]}
+                    {square}
                     </Square>
 
                   )
