@@ -1,4 +1,5 @@
 # Triqui (Tic-Tac-Toe) en React
+![image](https://github.com/Felipe34515/Juego-Triqui/assets/78154196/e01d061b-0d99-4933-8f5d-523af025adeb)
 
 Este proyecto es una implementación del clásico juego de Triqui (Tic-Tac-Toe) utilizando React. La aplicación permite a dos jugadores turnarse para marcar X y O en un tablero de 3x3, determinando un ganador o un empate. Este proyecto demuestra el manejo de estados, componentes, y enrutamiento en React.
 
