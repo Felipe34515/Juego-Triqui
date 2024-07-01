@@ -69,11 +69,23 @@ function App() {
     //Verificar si hay un ganador
     const newWinner = checkWinner(newBoard);
     if (newWinner) {
-      alert(`El ganador es ${newWinner}`);
+      //alert(`El ganador es ${newWinner}`);
       setWinner(newWinner);
       return;
     }
+    //Verificar si hay empate
+    if (!newBoard.includes(null)) {
+      //alert('Empate');
+      setWinner(false);
+    }
 
+    
+  }
+
+  const resetGame = () => {
+    setBoard(Array(9).fill(null));
+    setTurn(TURNS.X);
+    setWinner(null);
     
   }
   
@@ -103,6 +115,22 @@ function App() {
             <Square isSelected={ turn === TURNS.X} >{TURNS.X}</Square>
             <Square isSelected={ turn === TURNS.O} >{TURNS.O}</Square>
           </section>
+
+          {/* Decir quien gana otra vez y terminar el juego */}
+          {
+            winner !== null && (
+              <section className='winner'>
+                <h1 className='text'>
+                {winner ? `El ganador es ${winner}` : 'Empate'}
+                <footer>
+                  <button onClick={resetGame}>Empezar de nuevo</button>
+                </footer>
+                </h1>
+                
+              </section>)
+
+          }
+          <button onClick={resetGame}>Reiniciar</button>
         </main>
     </div>
   );
