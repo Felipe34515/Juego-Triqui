@@ -16,7 +16,7 @@ Sigue estos pasos para clonar y ejecutar el proyecto en tu máquina local:
 1. Clona este repositorio:
     ```bash
     git clone https://github.com/tu-usuario/triqui-react.git
-    cd triqui-react
+    cd app-react
     ```
 
 2. Instala las dependencias:
