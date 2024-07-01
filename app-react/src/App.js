@@ -51,9 +51,9 @@ function App() {
   return (
     <div>
       <header className="App-header">
-        <h1>Juego de Triqui</h1>
+        <h1> Bienvenido  </h1>
       </header>
-      <h2 className="App-header">Por Felipe Rueda</h2>
+      <h2 className="App-header">Juego de Triqui creado por Felipe Rueda</h2>
         <main className='board'>
           <section className='game'>
             {
