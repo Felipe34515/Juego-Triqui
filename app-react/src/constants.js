@@ -1,6 +1,6 @@
 export const TURNS = {	//turnos
-    X: "x", //true
-    O: "o"  //false
+    X: "❌", //true
+    O: "⚪"  //false
   }
 export const Combinations = [ //Combinaciones ganadoras
     [0, 1, 2], //Horizontal
