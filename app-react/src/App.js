@@ -2,36 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 import confetti from 'canvas-confetti';
+import { Square } from './components/square';
+import { TURNS } from './constants';
+import { checkWinner } from './logic/board';
+import { WinnerModal } from './components/winnerModal';
 
 
-const TURNS = {	//turnos
-  X: "x", //true
-  O: "o"  //false
-}
-const Combinations = [ //Combinaciones ganadoras
-  [0, 1, 2], //Horizontal
-  [3, 4, 5], //Horizontal
-  [6, 7, 8], //Horizontal
-  [0, 3, 6], //Vertical
-  [1, 4, 7], //Vertical
-  [2, 5, 8], //Vertical
-  [0, 4, 8], //Diagonal
-  [2, 4, 6]  //Diagonal
-]
-
-
-const Square = ({ children, isSelected, updateBoard, index}) => {
-  const className = `square ${isSelected ? 'is-selected' : ''}`
-
-  const handleClick = () => {
-    updateBoard(index)
-    }
-    return (
-      <div className={className} onClick={handleClick}>
-          {children}
-      </div>
-    )
-}
 
 
 function App() {
@@ -43,15 +19,7 @@ function App() {
   // null significa que no hay ganador y false significa que hay empate
   const [winner, setWinner] = useState(null);
 
-  const checkWinner = (boardTocheck) => {
-    for (const combination of Combinations) {
-      const [a, b, c] = combination;
-      if (boardTocheck[a] && boardTocheck[a] === boardTocheck[b] && boardTocheck[a] === boardTocheck[c]) {
-        return boardTocheck[a];
-      }
-    }
-    return null;
-  }
+
 
   const updateBoard = (index) => {
     if (board[index] !== null || winner) { //Si la casilla ya tiene un valor, no se puede cambiar
@@ -119,19 +87,7 @@ function App() {
           </section>
 
           {/* Decir quien gana otra vez y terminar el juego */}
-          {
-            winner !== null && (
-              <section className='winner'>
-                <h1 className='text'>
-                {winner ? `El ganador es ${winner}` : 'Empate'}
-                <footer>
-                  <button onClick={resetGame}>Empezar de nuevo</button>
-                </footer>
-                </h1>
-                
-              </section>)
-
-          }
+          <WinnerModal winner= {winner} resetGame= {resetGame}/>
           <button onClick={resetGame}>Reiniciar</button>
         </main>
     </div>
