@@ -6,6 +6,8 @@ import { Square } from './components/square';
 import { TURNS } from './constants';
 import { checkWinner } from './logic/board';
 import { WinnerModal } from './components/winnerModal';
+import { resetGame } from './actions/resetGame';
+
 
 
 
@@ -13,11 +15,8 @@ import { WinnerModal } from './components/winnerModal';
 function App() {
 
   const [board, setBoard] = useState(Array(9).fill(null));
-
-  const [turn, setTurn] = useState(TURNS.X);
-
-  // null significa que no hay ganador y false significa que hay empate
-  const [winner, setWinner] = useState(null);
+  const [turn, setTurn] = useState(TURNS.X); 
+  const [winner, setWinner] = useState(null); // null significa que no hay ganador y false significa que hay empate
 
 
 
@@ -29,12 +28,9 @@ function App() {
     const newBoard = [...board]; //Copia el tablero, se hace la copia poque no se puede mutar nunca las props y el estado
     newBoard[index] = turn; //Cambia el valor de la casilla
     setBoard(newBoard); // Es un tipo de retorno a la función
-    
-
     //Cambiar turno
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X; //Compara si el turno es igual a X, si es así, cambia a O, si no, cambia a X
     setTurn (newTurn) // Es un tipo de retorno a la función
-
     //Verificar si hay un ganador
     const newWinner = checkWinner(newBoard);
     if (newWinner) {
@@ -48,16 +44,8 @@ function App() {
       //alert('Empate');
       setWinner(false);
     }
-
-    
   }
 
-  const resetGame = () => {
-    setBoard(Array(9).fill(null));
-    setTurn(TURNS.X);
-    setWinner(null);
-    
-  }
   
 
   return (
@@ -87,8 +75,8 @@ function App() {
           </section>
 
           {/* Decir quien gana otra vez y terminar el juego */}
-          <WinnerModal winner= {winner} resetGame= {resetGame}/>
-          <button onClick={resetGame}>Reiniciar</button>
+          <WinnerModal winner= {winner} setBoard = {setBoard} setTurn = {setTurn} setWinner ={setWinner}/>
+          <button onClick={() => resetGame( {setBoard, setTurn, setWinner} )}>Reiniciar</button>
         </main>
     </div>
   );
